@@ -8,6 +8,7 @@
     var clickMeButton;
     var assetManager;
     var assetManifest;
+    var currentScene;
     assetManifest = [{ id: "clickMeButton", src: "./Assets/images/clickMeButton.png" }];
     // preloads assets
     function Init() {
@@ -23,6 +24,7 @@
         stage.enableMouseOver(20); // turn this on for buttons
         createjs.Ticker.framerate = 60; //60 FPS
         createjs.Ticker.on("tick", Update);
+        currentScene = config.Scene.START;
         Main();
     }
     function clickMeButtonClick() {
@@ -34,12 +36,17 @@
         stage.update(); // redraws the stage
     }
     function Main() {
-        console.log("Game Started...");
-        helloLabel = new objects.Label("Hello, World!", "40px", "Consolas", "#000000", 320, 240, true);
-        stage.addChild(helloLabel);
-        clickMeButton = new objects.Button(assetManager, "clickMeButton", 320, 340);
-        stage.addChild(clickMeButton);
-        clickMeButton.on("click", clickMeButtonClick);
+        switch (currentScene) {
+            case config.Scene.START:
+                // remove all current objects from the stage
+                // instantiate a new scene object
+                // add the new scene object to stage
+                break;
+            case config.Scene.PLAY:
+                break;
+            case config.Scene.OVER:
+                break;
+        }
     }
     window.onload = Init;
 })();
