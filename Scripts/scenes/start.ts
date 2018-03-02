@@ -9,21 +9,28 @@ module scenes {
         // Constructor
         constructor(assetManager: createjs.LoadQueue) {
             super(assetManager);
+
+            this.Start();
         }
 
         // Private Methods
         private _startButtonClick():void {
-            
+            objects.Game.currentScene = config.Scene.PLAY;
         }
 
         // Public Methods
+
+        // Initialize Game Variables and objects
         public Start(): void {
             this._welcomeLabel = new objects.Label("Welcome", "60px", "Consolas", "#000000", 320, 240 );
             this._startButton = new objects.Button(this.assetManager, "startButton", 320, 300);
 
         }
 
-        public Update(): void {
+        public Update(): number {
+            console.log("start update");
+
+            return objects.Game.currentScene;
 
         }
 

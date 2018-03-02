@@ -13,14 +13,21 @@ module objects {
         }
 
         // Private Methods
+        
+
+
+        // Public Methods
         public Start():void {
 
         }
 
-        public update():void {
+        public update():number {
+            return 0;
 
         }
 
-        // Public Methods
+        public Main():void {
+
+        }
     }
 }

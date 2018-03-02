@@ -15,17 +15,23 @@ var scenes;
         // Public Properties
         // Constructor
         function StartScene(assetManager) {
-            return _super.call(this, assetManager) || this;
+            var _this = _super.call(this, assetManager) || this;
+            _this.Start();
+            return _this;
         }
         // Private Methods
         StartScene.prototype._startButtonClick = function () {
+            objects.Game.currentScene = config.Scene.PLAY;
         };
         // Public Methods
+        // Initialize Game Variables and objects
         StartScene.prototype.Start = function () {
             this._welcomeLabel = new objects.Label("Welcome", "60px", "Consolas", "#000000", 320, 240);
             this._startButton = new objects.Button(this.assetManager, "startButton", 320, 300);
         };
         StartScene.prototype.Update = function () {
+            console.log("start update");
+            return objects.Game.currentScene;
         };
         // this is where the fun happens
         StartScene.prototype.Main = function () {

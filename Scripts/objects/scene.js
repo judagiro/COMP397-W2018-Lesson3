@@ -19,9 +19,13 @@ var objects;
             return _this;
         }
         // Private Methods
+        // Public Methods
         Scene.prototype.Start = function () {
         };
         Scene.prototype.update = function () {
+            return 0;
+        };
+        Scene.prototype.Main = function () {
         };
         return Scene;
     }(createjs.Container));

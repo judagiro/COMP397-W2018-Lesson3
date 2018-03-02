@@ -9,7 +9,10 @@
     var assetManager;
     var assetManifest;
     var currentScene;
-    assetManifest = [{ id: "clickMeButton", src: "./Assets/images/clickMeButton.png" }];
+    assetManifest = [
+        { id: "clickMeButton", src: "./Assets/images/clickMeButton.png" },
+        { id: "startButton", src: "./Assets/images/startButton.png" }
+    ];
     // preloads assets
     function Init() {
         console.log("Initialization Started...");
@@ -24,27 +27,33 @@
         stage.enableMouseOver(20); // turn this on for buttons
         createjs.Ticker.framerate = 60; //60 FPS
         createjs.Ticker.on("tick", Update);
-        currentScene = config.Scene.START;
+        objects.Game.currentScene = config.Scene.START;
         Main();
     }
-    function clickMeButtonClick() {
-        helloLabel.text = "Clicked!";
-        helloLabel.regX = helloLabel.getMeasuredWidth() * 0.5;
-        helloLabel.regY = helloLabel.getMeasuredHeight() * 0.5;
-    }
     function Update() {
+        // if the scene that is playing returns another current scene
+        // then call Main again and switch the scene
+        if (currentScene.update() != objects.Game.currentScene) {
+            console.log(objects.Game.currentScene);
+            Main();
+        }
         stage.update(); // redraws the stage
     }
     function Main() {
-        switch (currentScene) {
+        switch (objects.Game.currentScene) {
             case config.Scene.START:
                 // remove all current objects from the stage
-                // instantiate a new scene object
+                stage.removeAllChildren();
+                // instantiate a new scene object    
+                currentScene = new scenes.StartScene(assetManager);
                 // add the new scene object to stage
+                stage.addChild(currentScene);
                 break;
             case config.Scene.PLAY:
+                // do some other stuff
                 break;
             case config.Scene.OVER:
+                // do the final stuff
                 break;
         }
     }
